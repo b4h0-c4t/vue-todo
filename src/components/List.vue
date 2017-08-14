@@ -1,22 +1,17 @@
 <template>
   <li class="list">
     <div class="listHeader">
-      <h2 class="taskName">{{name}}</h2>
-      <date class="limit">{{limit}}</date>
+      <h2 class="taskName">{{task.name}}</h2>
+      <p class="limit">{{task.limit}}</p>
     </div>
-    <p class="taskDisc">{{discription}}</p>
+    <p class="taskDisc">{{task.desc}}</p>
   </li>
 </template>
 
 <script>
 export default {
   name: 'list',
-  data () {
-    return {
-      name: 'Task Name',
-      discription: 'this is task.'
-    }
-  }
+  props: ['task']
 };
 </script>
 

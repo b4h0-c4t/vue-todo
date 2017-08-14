@@ -1,19 +1,24 @@
 <template>
   <div class="header">
-    <button class="menuBtn" type="button" name="addTasks"></button>
+    <button class="menuBtn" type="button" name="taskMenu"></button>
     <h1 class="title">{{title}}</h1>
-    <button class="plusBtn" type="button" name="addTasks"></button>
+    <button class="plusBtn" type="button" name="addTasks" v-on:click="plusBtn"></button>
   </div>
 </template>
 
 <script>
+import {mapActions, mapGetters} from 'vuex';
+
 export default {
   name: 'header',
   data () {
     return {
       title: 'Vue ToDo App'
     }
-  }
+  },
+  methods: mapActions('Header', {
+    'plusBtn': 'plusBtn'
+  })
 };
 </script>
 

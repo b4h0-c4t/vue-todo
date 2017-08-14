@@ -1,8 +1,10 @@
 <template>
   <div class="todo">
     <Header></Header>
-    <ul class="tasks" v-if="listView" v-for="item in tasks">
-      <List></List>
+    <ul class="tasks" v-if="listView">
+      <template v-for="item in tasks">
+        <List v-bind:task="item"></List>
+      </template>
     </ul>
     <Input v-else></Input>
   </div>
@@ -12,19 +14,14 @@
 import Header from '@/components/Header';
 import List from '@/components/List';
 import Input from '@/components/Input';
+import {mapActions, mapGetters} from 'vuex';
+
 export default {
   name: 'todo',
-  data () {
-    return {
-      msg: 'this is ToDo App',
-      listView: true,
-      tasks: [
-        {msg: 'aaa'},
-        {msg: 'bbb'},
-        {msg: 'ccc'}
-      ]
-    }
-  },
+  computed: mapGetters('Todo', {
+    'listView': 'getListView',
+    'tasks': 'getTasks'
+  }),
   components: {
     Header,
     List,

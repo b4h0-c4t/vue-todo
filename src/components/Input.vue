@@ -2,27 +2,38 @@
   <div class="input">
     <div class="data">
       <label class="label" for="name">Task Name</label>
-      <input class="textBox" type="text" name="name" value="" placeholder="Task Name">
+      <input v-model="task.name" class="textBox" type="text" name="name" value="" placeholder="Task Name">
     </div>
     <div class="data">
       <label class="label" for="limit">Task Limit</label>
-      <input class="textBox" type="text" name="limit" value="" placeholder="Task Limit">
+      <input v-model="task.limit" class="textBox" type="text" name="limit" value="" placeholder="Task Limit">
     </div>
     <div class="data_large">
       <label class="label" for="description">Task Description</label>
-      <input class="textBox" type="text" name="description" value="" placeholder="Task Description">
+      <input v-model="task.desc" class="textBox" type="text" name="description" value="" placeholder="Task Description">
     </div>
-    <button class="addBtn" type="button" name="addbtn">追加</button>
+    <button class="addBtn" type="button" name="addbtn" v-on:click="addTask">追加</button>
   </div>
 </template>
 
 <script>
+import {mapGetters, mapActions} from 'vuex';
+
 export default {
   name: 'input',
   data () {
     return {
-      name: 'Task Name',
-      discription: 'this is task.'
+      task: {
+        name: '',
+        limit: '',
+        desc: ''
+      }
+    }
+  },
+  methods: {
+    addTask() {
+      this.$store._modules.root._children.Input.context.dispatch('addTask', this.task);
+      this.task = {name: '', limit: '', desc: ''};
     }
   }
 };

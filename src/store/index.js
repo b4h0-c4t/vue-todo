@@ -17,7 +17,7 @@ const Todo = {
       return rootState.tasks;
     }
   }
-}
+};
 
 const Header = {
   namespaced: true,
@@ -29,6 +29,22 @@ const Header = {
     }
   },
   getters: {}
+};
+
+const Input = {
+  namespaced: true,
+  state: {
+    task: {
+      'name': 'aaa',
+      'limit': '0000/00/00',
+      'desc': 'bbb'
+    }
+  },
+  actions: {
+    addTask({commit, state, rootState}, value) {
+      commit('setTask', value, {root: true});
+    }
+  }
 }
 
 export default new Vuex.Store({
@@ -53,7 +69,7 @@ export default new Vuex.Store({
     ]
   },
   mutations: {
-    addTask(state, value) {
+    setTask(state, value) {
       state.tasks.push(value);
     },
     rmTask(state, value) {
@@ -69,6 +85,7 @@ export default new Vuex.Store({
   },
   modules: {
     Todo,
-    Header
+    Header,
+    Input
   }
 });

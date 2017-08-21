@@ -43,6 +43,7 @@ const Input = {
   actions: {
     addTask({commit, state, rootState}, value) {
       commit('setTask', value, {root: true});
+      commit('mutateListView', null, {root: true});
     }
   }
 }
